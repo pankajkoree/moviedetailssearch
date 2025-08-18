@@ -1,6 +1,6 @@
 const { Button } = require("./ui/button");
 
-const NavBar = () => {
+export const NavBar = () => {
   return (
     <div>
       <Button>Movies</Button>
