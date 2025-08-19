@@ -1,7 +1,6 @@
 "use client";
 
 import { NavBar } from "@/components/NavBar";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -36,19 +35,32 @@ export default function Home() {
       </div>
 
       {/* Bottom Nav (for mobile view only) */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center md:hidden">
-        <div className="flex justify-around items-center w-full shadow-lg rounded-t-2xl py-2">
-          <Button variant="movieNavButton">Movie</Button>
-          <Button variant="movieNavButton">Series</Button>
-          <Button variant="movieNavButton">Watchlist</Button>
-          <Button variant="movieNavButton">SignIn</Button>
-          <Button className="p-3" onClick={changeTheme}>
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center md:hidden py-2 px-12">
+        <div className="flex justify-around items-center w-full rounded-full bg-[#EEEEEE]">
+          <button className="py-3 px-2">
+            <Image src="/movie.png" width={20} height={20} alt="movie" />
+          </button>
+          <button className="py-3 px-2">
+            <Image src="/series.png" width={20} height={20} alt="series" />
+          </button>
+          <button className="py-3 px-2">
+            <Image
+              src="/watchlist.png"
+              width={20}
+              height={20}
+              alt="watchlist"
+            />
+          </button>
+          <button className="py-3 px-2">
+            <Image src="/signin.png" width={20} height={20} alt="signin" />
+          </button>
+          <button onClick={changeTheme} className="py-3 px-2">
             {isDarkMode ? (
               <Image src="/light.png" width={20} height={20} alt="light mode" />
             ) : (
               <Image src="/dark.png" width={20} height={20} alt="dark mode" />
             )}
-          </Button>
+          </button>
         </div>
       </div>
     </div>
