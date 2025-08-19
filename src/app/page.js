@@ -1,10 +1,55 @@
+"use client";
+
 import { NavBar } from "@/components/NavBar";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const changeTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+
+    if (newTheme) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      setIsDarkMode(true);
+    }
+  }, []);
   return (
-    <div className="flex justify-center w-full bg-amber-700">
-      <div className="flex justify-center bg-amber-200 lg:w-[60%]">
+    <div className="relative flex justify-center w-full bg-amber-700 h-full">
+      {/* Top Nav (for tab + laptop view) */}
+      <div className="relative hidden md:flex justify-center bg-amber-200 w-full md:w-[80%] lg:w-[60%]">
         <NavBar />
+      </div>
+
+      {/* Bottom Nav (for mobile view only) */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center md:hidden">
+        <div className="flex justify-around items-center w-full shadow-lg rounded-t-2xl py-2">
+          <Button variant="movieNavButton">Movie</Button>
+          <Button variant="movieNavButton">Series</Button>
+          <Button variant="movieNavButton">Watchlist</Button>
+          <Button variant="movieNavButton">SignIn</Button>
+          <Button className="p-3" onClick={changeTheme}>
+            {isDarkMode ? (
+              <Image src="/light.png" width={20} height={20} alt="light mode" />
+            ) : (
+              <Image src="/dark.png" width={20} height={20} alt="dark mode" />
+            )}
+          </Button>
+        </div>
       </div>
     </div>
   );
