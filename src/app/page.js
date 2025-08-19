@@ -35,8 +35,8 @@ export default function Home() {
       </div>
 
       {/* Bottom Nav (for mobile view only) */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center md:hidden py-2 px-12">
-        <div className="flex justify-around items-center w-full rounded-full bg-[#EEEEEE]">
+      <div className="fixed bottom-4 left-0 right-0 z-50 flex justify-center md:hidden py-2 px-12">
+        <div className="flex justify-around items-center w-full rounded-full bg-slate-700">
           <button className="py-3 px-2">
             <Image src="/movie.png" width={20} height={20} alt="movie" />
           </button>
