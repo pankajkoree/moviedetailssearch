@@ -28,10 +28,24 @@ export const NavBar = () => {
   }, []);
   return (
     <div className="flex gap-2 mt-2 mb-2">
-      <Button variant="movieNavButton">Movies</Button>
-      <Button variant="movieNavButton">TV Shows</Button>
-      <Button variant="movieNavButton">Watchlist</Button>
-      <Button variant="movieNavButton">SignIn</Button>
+      <Button variant="movieNavButton">
+        <Image src="/movie.png" width={20} height={20} alt="movie" />
+        Movies
+      </Button>
+      <Button variant="movieNavButton">
+        <Image src="/series.png" width={20} height={20} alt="series" />
+        TV Shows
+      </Button>
+      <Button variant="movieNavButton">
+        {" "}
+        <Image src="/watchlist.png" width={20} height={20} alt="watchlist" />
+        Watchlist
+      </Button>
+      <Button variant="movieNavButton">
+        {" "}
+        <Image src="/signin.png" width={20} height={20} alt="signin" />
+        SignIn
+      </Button>
       <Button variant="movieNavButtonTheme" onClick={changeTheme}>
         {isDarkMode ? (
           <Image src="/light.png" width={20} height={20} alt="light mode" />
