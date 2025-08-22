@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="relative flex justify-center w-full h-full">
       {/* Top Nav (for tab + laptop view) */}
-      <div className="relative hidden md:flex md:flex-col justify-center md:items-center w-full md:w-[80%] lg:w-[60%] border">
+      <div className="relative hidden md:flex md:flex-col justify-center md:items-center w-full md:w-[80%] lg:w-[60%]">
         <NavBar />
         <VideoComponent />
         <Trending />

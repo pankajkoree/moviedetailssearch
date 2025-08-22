@@ -1,8 +1,11 @@
+import { Axe } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export const Trending = () => {
   const [trendingList, setTrendingList] = useState([]);
+  const [start, setStart] = useState(0);
+  const maxItem = 5;
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
@@ -27,13 +30,25 @@ export const Trending = () => {
     fetchTrendingMovies();
   }, []);
 
+  const handleNext = () => {
+    setStart((prev) =>
+      prev + maxItem < trendingList.length ? prev + maxItem : prev
+    );
+  };
+
+  const handlePrev = () => {
+    setStart((prev) => (prev - maxItem >= 0 ? prev - maxItem : 0));
+  };
+
+  const moviesToShow = trendingList.slice(start, start + maxItem);
+
   return (
     <div>
-      <div>
+      <div className="md:text-3xl mb-2">
         <h1>Trending</h1>
       </div>
-      <div className="flex gap-2 p-2">
-        <div className="flex z-10 items-center mr-[-60px] dark:text-white">
+      <div className="flex gap-2">
+        <div className="flex z-10 items-center dark:text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -53,20 +68,20 @@ export const Trending = () => {
           </svg>
         </div>
 
-        <div>
-          {trendingList.map((movie) => (
+        <div className="flex gap-2">
+          {moviesToShow.map((movie) => (
             <div key={movie.id}>
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title || movie.name}
-                width={300}
-                height={200}
+                width={200}
+                height={120}
               />
             </div>
           ))}
         </div>
 
-        <div className="flex z-10 items-center ml-[-60px] dark:text-white">
+        <div className="flex z-10 items-center dark:text-white">
           <svg
             viewBox="0 0 24 24"
             fill="none"
