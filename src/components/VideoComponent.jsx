@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const VideoComponent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,6 +23,15 @@ export const VideoComponent = () => {
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % videos.length);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [videos.length]);
+
   return (
     <div className="relative flex p-4 gap-4">
       <div className="flex z-10 items-center mr-[-60px] dark:text-white">
@@ -47,7 +56,7 @@ export const VideoComponent = () => {
       <div>
         <iframe
           key={videos[currentIndex]}
-          width="840"
+          width="1080"
           height="516"
           src={`https://www.youtube.com/embed/${videos[currentIndex]}`}
           title="YouTube video player"
@@ -56,7 +65,7 @@ export const VideoComponent = () => {
           allowFullScreen
         ></iframe>
       </div>
-      <div className="flex items-center ml-[-60px] dark:text-white">
+      <div className="flex z-10 items-center ml-[-60px] dark:text-white">
         <svg
           viewBox="0 0 24 24"
           fill="none"

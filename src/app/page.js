@@ -17,7 +17,6 @@ export default function Home() {
       </div>
       {/* End Top Nav (for tab + laptop view) */}
 
-
       {/* Bottom Nav (for mobile view only) */}
       <div className="fixed md:hidden">
         <NavBarMobile />
