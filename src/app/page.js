@@ -2,6 +2,7 @@
 
 import { NavBar } from "@/components/NavBar";
 import { NavBarMobile } from "@/components/NavBarMobile";
+import { PopularCeleb } from "@/components/PopularCeleb";
 import { Trending } from "@/components/Trending";
 import { VideoComponent } from "@/components/VideoComponent";
 import { VideoComponentMobile } from "@/components/VideoComponentMobile";
@@ -14,6 +15,7 @@ export default function Home() {
         <NavBar />
         <VideoComponent />
         <Trending />
+        <PopularCeleb />
       </div>
       {/* End Top Nav (for tab + laptop view) */}
 
