@@ -1,6 +1,7 @@
 "use client";
 
 import { NavBar } from "@/components/NavBar";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
@@ -8,6 +9,11 @@ import { useEffect, useState } from "react";
 
 const Movies = () => {
   const [movieData, setMovieData] = useState([]);
+  const [searchedMovie, setSearchedMovie] = useState("");
+  const [searchMovieData, setSearchedMovieData] = useState([]);
+  const [movieId, setMovieId] = useState(null);
+  const [moreMovieDetails, setMoreMovieDetails] = useState([]);
+
 
   useEffect(() => {
     const fetchMovieData = async () => {
@@ -30,6 +36,59 @@ const Movies = () => {
     fetchMovieData();
   }, []);
 
+  const searchMovieDetails = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${searchedMovie}`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDBAPIKEY}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+      setSearchedMovieData(data.results);
+      if (data.results.length > 0) {
+        setMovieId(data.results[0].id);
+      }
+    } catch (error) {
+      console.log("Error fetching searched movie details : ", error);
+    }
+  };
+
+  useEffect(() => {
+    if (!movieId) return;
+
+    const searchEvenMoreMovieDataWithID = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDBAPIKEY}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        setMoreMovieDetails(data);
+      } catch (error) {
+        console.log("Error searching movie details with ID : ", error);
+      }
+    };
+    searchEvenMoreMovieDataWithID();
+  }, [movieId]);
+
+const movieDetails = searchMovieData.map(movie => {
+  if (movie.id === moreMovieDetails?.id) {
+    return { ...movie, ...moreMovieDetails };
+  }
+  return movie;
+});
+console.log(movieDetails);
+
   return (
     <div className="relative flex justify-center w-full h-full">
       {/* Top Nav (for tab + laptop view) */}
@@ -41,11 +100,46 @@ const Movies = () => {
         {/* search bar */}
         <div className="flex gap-2">
           <Label htmlFor="movieSearch">Movie: </Label>
-          <Input id="movieSearch" type="text" placeholder="search movie" />
+          <Input
+            id="movieSearch"
+            type="text"
+            placeholder="search movie"
+            value={searchedMovie}
+            onChange={(e) => setSearchedMovie(e.target.value)}
+          />
+          <Button onClick={searchMovieDetails} className="hover:cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-label="Search"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </Button>
         </div>
+        {/* end search bar */}
 
         {/* movie to show as default and get changed when its searched */}
-        <div>{}</div>
+        <div>
+          {searchMovieData.length > 0
+            ? searchMovieData.map((movie) => (
+                <div key={movie.title}>
+                  {/* movie title  */}
+                  <p>{movie.title}</p>
+                  {/* end movie title  */}
+                  <p>{movie.release_date}</p>
+                </div>
+              ))
+            : ""}
+        </div>
         {/* end movie to show as default and get changed when its searched */}
 
         {/* movie lists */}
@@ -63,7 +157,9 @@ const Movies = () => {
               </div>
 
               <div className="w-[75%]">
-                <p className="text-xl font-semibold hover:cursor-pointer">{movie.title}</p>
+                <p className="text-xl font-semibold hover:cursor-pointer hover:text-slate-400">
+                  {movie.title}
+                </p>
                 <div className="flex gap-2">
                   <p>{movie.original_language}</p>
                   <p>{movie.release_date}</p>
@@ -76,29 +172,29 @@ const Movies = () => {
               </div>
 
               <div className="flex items-center text-blue-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="hover:cursor-pointer"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="16" x2="12" y2="12" />
-                  <line x1="12" y1="8" x2="12" y2="8" />
-                </svg>
+                <div className="w-[36] h-[36] hover:bg-blue-100 p-2 rounded-full">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="hover:cursor-pointer hover:bg-blue-100"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12" y2="8" />
+                  </svg>
+                </div>
               </div>
             </div>
           ))}
         </div>
         {/* end movie lists */}
-
-        {/* end search bar */}
       </div>
     </div>
   );
