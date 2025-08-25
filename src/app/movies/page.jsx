@@ -52,15 +52,18 @@ const Movies = () => {
         <div className="flex flex-col gap-2 pt-4">
           {movieData.map((movie) => (
             <div key={movie.id} className="flex gap-2 border p-2">
-              <Image
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt={movie.title}
-                width={60}
-                height={40}
-                className="object-cover"
-              />
-              <div>
-                <p className="text-xl font-semibold">{movie.title}</p>
+              <div className="flex justify-center items-center w-[15%]">
+                <Image
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                  alt={movie.title}
+                  width={60}
+                  height={40}
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="w-[75%]">
+                <p className="text-xl font-semibold hover:cursor-pointer">{movie.title}</p>
                 <div className="flex gap-2">
                   <p>{movie.original_language}</p>
                   <p>{movie.release_date}</p>
@@ -70,6 +73,25 @@ const Movies = () => {
                   <p>⭐{Math.floor(movie.vote_average * 10) / 10}/10</p>
                   <p>{`(${movie.vote_count})`}</p>
                 </div>
+              </div>
+
+              <div className="flex items-center text-blue-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="hover:cursor-pointer"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12" y2="8" />
+                </svg>
               </div>
             </div>
           ))}

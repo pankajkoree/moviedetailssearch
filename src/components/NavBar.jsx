@@ -29,6 +29,10 @@ export const NavBar = () => {
     }
   }, []);
 
+  const gotoHome = () => {
+    router.push("/");
+  };
+
   const gotoMovies = () => {
     router.push("/movies");
   };
@@ -46,6 +50,10 @@ export const NavBar = () => {
   };
   return (
     <div className="flex gap-2 mt-2 mb-2">
+      <Button variant="movieNavButton" onClick={gotoHome}>
+        <Image src="/home.png" width={20} height={20} alt="home" />
+        Home
+      </Button>
       <Button variant="movieNavButton" onClick={gotoMovies}>
         <Image src="/movie.png" width={20} height={20} alt="movie" />
         Movies
