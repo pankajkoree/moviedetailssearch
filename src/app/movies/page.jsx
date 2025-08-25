@@ -30,7 +30,6 @@ const Movies = () => {
     fetchMovieData();
   }, []);
 
-  console.log(movieData);
   return (
     <div className="relative flex justify-center w-full h-full">
       {/* Top Nav (for tab + laptop view) */}
