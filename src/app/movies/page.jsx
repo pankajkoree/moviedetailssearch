@@ -14,7 +14,6 @@ const Movies = () => {
   const [movieId, setMovieId] = useState(null);
   const [moreMovieDetails, setMoreMovieDetails] = useState([]);
 
-
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
@@ -81,13 +80,12 @@ const Movies = () => {
     searchEvenMoreMovieDataWithID();
   }, [movieId]);
 
-const movieDetails = searchMovieData.map(movie => {
-  if (movie.id === moreMovieDetails?.id) {
-    return { ...movie, ...moreMovieDetails };
-  }
-  return movie;
-});
-console.log(movieDetails);
+  const movieDetails = searchMovieData.map((movie) => {
+    if (movie.id === moreMovieDetails?.id) {
+      return { ...movie, ...moreMovieDetails };
+    }
+    return movie;
+  });
 
   return (
     <div className="relative flex justify-center w-full h-full">
@@ -129,13 +127,29 @@ console.log(movieDetails);
 
         {/* movie to show as default and get changed when its searched */}
         <div>
-          {searchMovieData.length > 0
-            ? searchMovieData.map((movie) => (
+          {movieDetails.length > 0
+            ? movieDetails.map((movie) => (
                 <div key={movie.title}>
-                  {/* movie title  */}
-                  <p>{movie.title}</p>
-                  {/* end movie title  */}
-                  <p>{movie.release_date}</p>
+                  <div>
+                    {/* movie title  */}
+                    <p>{movie.title}</p>
+                    {/* end movie title  */}
+                    <p>{movie.release_date}</p>
+
+                    <p>
+                      {movie.runtime > 60
+                        ? `${Math.floor(movie.runtime / 60)}h ${
+                            movie.runtime % 60
+                          }m`
+                        : movie.runtime}
+                    </p>
+                  </div>
+                  <div>
+                    <p>IMDB RATING 
+                      <span>{``}</span>
+                    </p>
+                  </div>
+
                 </div>
               ))
             : ""}
