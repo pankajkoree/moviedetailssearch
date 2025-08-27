@@ -144,12 +144,24 @@ const Movies = () => {
                         : movie.runtime}
                     </p>
                   </div>
+                  {/* imdb rating */}
                   <div>
-                    <p>IMDB RATING 
-                      <span>{``}</span>
-                    </p>
+                    <div>
+                      <p>IMDB RATING</p>
+                    </div>
+                    <div>
+                      <div>
+                        <p>⭐</p>
+                      </div>
+                      <div>
+                        <p>{`${
+                          Math.floor(movie.vote_average * 10) / 10
+                        }/10`}</p>
+                        <p>{`(${movie.vote_count})`}</p>
+                      </div>
+                    </div>
                   </div>
-
+                  {/* end imdb rating */}
                 </div>
               ))
             : ""}
