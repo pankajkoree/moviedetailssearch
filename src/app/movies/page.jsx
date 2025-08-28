@@ -166,7 +166,7 @@ const Movies = () => {
               ))
             : ""}
         </div>
-        {/* end movie to show as default and get changed when its searched */}
+        {/* movie to show as default and get changed when its searched */}
 
         {/* movie lists */}
         <div className="flex flex-col gap-2 pt-4">
