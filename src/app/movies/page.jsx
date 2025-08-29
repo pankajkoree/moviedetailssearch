@@ -130,43 +130,67 @@ const Movies = () => {
           {movieDetails.length > 0
             ? movieDetails.map((movie) => (
                 <div key={movie.title}>
+                  {/* 1st section tagline and rating */}
                   <div>
-                    {/* movie title  */}
-                    <p>{movie.title}</p>
-                    {/* end movie title  */}
-                    <p>{movie.release_date}</p>
+                    <div>
+                      {/* movie title  */}
+                      <p>{movie.title}</p>
+                      {/* end movie title  */}
+                      <p>{movie.release_date}</p>
 
-                    <p>
-                      {movie.runtime > 60
-                        ? `${Math.floor(movie.runtime / 60)}h ${
-                            movie.runtime % 60
-                          }m`
-                        : movie.runtime}
-                    </p>
+                      <p>
+                        {movie.runtime > 60
+                          ? `${Math.floor(movie.runtime / 60)}h ${
+                              movie.runtime % 60
+                            }m`
+                          : movie.runtime}
+                      </p>
+                    </div>
+                    {/* imdb rating */}
+                    <div>
+                      <div>
+                        <p>IMDB RATING</p>
+                      </div>
+                      <div>
+                        <div>
+                          <p>⭐</p>
+                        </div>
+                        <div>
+                          <p>{`${
+                            Math.floor(movie.vote_average * 10) / 10
+                          }/10`}</p>
+                          <p>{`(${movie.vote_count})`}</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* end imdb rating */}
                   </div>
-                  {/* imdb rating */}
+                  {/* 1st section tagline and rating */}
+
+                  {/* 2nd section for poster and videos */}
                   <div>
+                    {/* poster */}
                     <div>
-                      <p>IMDB RATING</p>
+                      <h1>Poster image</h1>
                     </div>
+                    {/* poster */}
+
+                    {/* trailer video */}
                     <div>
-                      <div>
-                        <p>⭐</p>
-                      </div>
-                      <div>
-                        <p>{`${
-                          Math.floor(movie.vote_average * 10) / 10
-                        }/10`}</p>
-                        <p>{`(${movie.vote_count})`}</p>
-                      </div>
+                      <h1>Trailer video</h1>
                     </div>
+                    {/* trailer video */}
+                    <div></div>
                   </div>
-                  {/* end imdb rating */}
+                  {/* 2nd section for poster and videos */}
+
+                  {/* 3rd section for info and details */}
+                  {/* 3rd section for info and details */}
                 </div>
               ))
             : ""}
         </div>
-        {/* movie to show as default and get changed when its searched */}
+        {/* end movie to show as default and get changed when its searched */}
 
         {/* movie lists */}
         <div className="flex flex-col gap-2 pt-4">
