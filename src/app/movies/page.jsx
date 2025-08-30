@@ -171,13 +171,27 @@ const Movies = () => {
                   <div>
                     {/* poster */}
                     <div>
-                      <h1>Poster image</h1>
+                      <Image
+                        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                        alt={movie.id}
+                        width={200}
+                        height={100}
+                      />
                     </div>
                     {/* poster */}
 
                     {/* trailer video */}
                     <div>
-                      <h1>Trailer video</h1>
+                      <iframe
+                        key={videos[currentIndex]}
+                        width="1080"
+                        height="516"
+                        src={`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${process.env.NEXT_PUBLIC_TMDBAPIKEY}`}
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      ></iframe>
                     </div>
                     {/* trailer video */}
                     <div></div>
