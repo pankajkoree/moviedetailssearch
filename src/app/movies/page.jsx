@@ -186,7 +186,7 @@ const Movies = () => {
                         key={videos[currentIndex]}
                         width="1080"
                         height="516"
-                        src={`https://api.themoviedb.org/3/movie/${movie.id}/videos`}
+                        src={``}
                         title="YouTube video player"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin"
