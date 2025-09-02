@@ -168,7 +168,7 @@ const Movies = () => {
                   {/* 1st section tagline and rating */}
 
                   {/* 2nd section for poster and videos */}
-                  <div>
+                  <div className="flex p-2">
                     {/* poster */}
                     <div>
                       <Image
@@ -181,9 +181,9 @@ const Movies = () => {
                     {/* poster */}
 
                     {/* trailer video */}
-                    <div>
+                    <div className="border">
                       <iframe
-                        key={videos[currentIndex]}
+                        key={movie.id}
                         width="1080"
                         height="516"
                         src={``}
@@ -199,6 +199,22 @@ const Movies = () => {
                   {/* 2nd section for poster and videos */}
 
                   {/* 3rd section for info and details */}
+                  <div>
+                    {/* genres */}
+                    <div>
+                      <Button>Comedy</Button>
+                      <Button>Romance</Button>
+                      <Button>Drama</Button>
+                    </div>
+                    {/* end genres */}
+                    {/* overvie */}
+                    <div>
+                      <p>{movie.overview}</p>
+                      <p>Tagline : {movie.tagline}</p>
+                    </div>
+                    {/* end overview */}
+                  </div>
+
                   {/* 3rd section for info and details */}
                 </div>
               ))
