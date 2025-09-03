@@ -202,9 +202,11 @@ const Movies = () => {
                   <div>
                     {/* genres */}
                     <div>
-                      <Button>Comedy</Button>
-                      <Button>Romance</Button>
-                      <Button>Drama</Button>
+                      {movie?.genres?.map((genre) => (
+                        <div key={genre.name}>
+                          <Button>{genre.name}</Button>
+                        </div>
+                      ))}
                     </div>
                     {/* end genres */}
                     {/* overvie */}
