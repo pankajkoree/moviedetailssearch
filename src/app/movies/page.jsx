@@ -208,7 +208,6 @@ const Movies = () => {
                         </div>
                       ))}
                     </div>
-                    {/* end genres */}
                     {/* overvie */}
                     <div>
                       <p>{movie.overview}</p>
