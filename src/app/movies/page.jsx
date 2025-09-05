@@ -208,7 +208,7 @@ const Movies = () => {
                         </div>
                       ))}
                     </div>
-                    {/* overvie */}
+                    {/* overview */}
                     <div>
                       <p>{movie.overview}</p>
                       <p>Tagline : {movie.tagline}</p>
