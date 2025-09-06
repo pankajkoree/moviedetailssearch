@@ -213,7 +213,7 @@ const Movies = () => {
                       <p>{movie.overview}</p>
                       <p>Tagline : {movie.tagline}</p>
                     </div>
-                    {/* end overview */}
+                    {/* overview */}
                   </div>
 
                   {/* 3rd section for info and details */}
