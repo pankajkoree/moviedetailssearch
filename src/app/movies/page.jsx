@@ -215,6 +215,7 @@ const Movies = () => {
                     </div>
                     {/* overview */}
                   </div>
+                  {/* idk what doing, but stopping this fr */}
 
                   {/* 3rd section for info and details */}
                 </div>
