@@ -215,7 +215,6 @@ const Movies = () => {
                     </div>
                   </div>
 
-                  {/* 3rd section for info and details */}
                 </div>
               ))
             : ""}
